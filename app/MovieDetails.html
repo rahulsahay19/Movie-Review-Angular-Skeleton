@@ -1,0 +1,45 @@
+<!doctype html>
+<lang="en" ng-app="moviesApp">
+<head>
+	<meta charset="utf-8">
+	<title>Movie Review</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/app.css"/>
+</head>
+<div class="container">
+	<div class="navbar">
+		<div clas="navbar-inner">
+			<ul class="nav">
+				
+				</ul>
+		</div>
+	</div>
+	<div ng-controller="MovieController">
+		<div class="row">
+			<div class="span11">
+		{{event.name}} 
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="span11">
+		{{event.date}}
+		 </div>
+		</div><br />
+		<div class="row">
+			<div class="span11">
+		{{event.time}} 
+		
+		</div>
+		</div><br />
+	</div>
+</div>
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/underscore-1.4.4.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/MovieController.js"></script>
+</body>
+</html>
