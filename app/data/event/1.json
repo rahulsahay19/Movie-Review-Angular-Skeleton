@@ -8,7 +8,7 @@
                 "province": "KA"
             },
             "imageUrl": "http://pascalprecht.github.com/slides/angularjs-insights/img/angularjs-logo.png",
-            "sessions": [
+            "movies": [
                 {
 					"id": 1,
                     "name": "Godzilla",

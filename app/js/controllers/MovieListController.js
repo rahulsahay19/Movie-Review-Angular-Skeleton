@@ -1,11 +1,11 @@
 'use strict';
 
 moviesApp.controller('MovieListController',
-    function MovieListController($scope, $location, eventData) {
-      $scope.events = eventData.getAllEvents();
+    function MovieListController($scope, $location, showData) {
+      $scope.shows = showData.getAllEvents();
 
-      $scope.navigateToDetails = function (event) {
-        $location.url('/event/' + event.id);
+      $scope.navigateToDetails = function (show) {
+        $location.url('/show/' + show.id);
       };
     }
 );
