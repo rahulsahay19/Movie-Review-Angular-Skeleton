@@ -1988,7 +1988,7 @@ function publishExternalAPI(angular){
  * Angular to manipulate the DOM in a cross-browser compatible way. **jqLite** implements only the most
  * commonly needed functionality with the goal of having a very small footprint.</div>
  *
- * To use jQuery, simply load it before `DOMContentLoaded` event fired.
+ * To use jQuery, simply load it before `DOMContentLoaded` shows fired.
  *
  * <div class="alert">**Note:** all element references in Angular are always wrapped with jQuery or
  * jqLite; they are never raw DOM references.</div>
@@ -2026,7 +2026,7 @@ function publishExternalAPI(angular){
  * - [`replaceWith()`](http://api.jquery.com/replaceWith/)
  * - [`text()`](http://api.jquery.com/text/)
  * - [`toggleClass()`](http://api.jquery.com/toggleClass/)
- * - [`triggerHandler()`](http://api.jquery.com/triggerHandler/) - Passes a dummy event object to handlers.
+ * - [`triggerHandler()`](http://api.jquery.com/triggerHandler/) - Passes a dummy shows object to handlers.
  * - [`unbind()`](http://api.jquery.com/off/) - Does not support namespaces
  * - [`val()`](http://api.jquery.com/val/)
  * - [`wrap()`](http://api.jquery.com/wrap/)
@@ -2035,7 +2035,7 @@ function publishExternalAPI(angular){
  * Angular also provides the following additional methods and events to both jQuery and jqLite:
  *
  * ### Events
- * - `$destroy` - AngularJS intercepts all jqLite/jQuery's DOM destruction apis and fires this event
+ * - `$destroy` - AngularJS intercepts all jqLite/jQuery's DOM destruction apis and fires this shows
  *    on all DOM nodes being removed.  This can be used to clean up any 3rd party bindings to the DOM
  *    element before it is removed.
  *
@@ -2091,7 +2091,7 @@ function camelCase(name) {
 // jQuery mutation patch
 //
 // In conjunction with bindJQuery intercepts all jQuery's DOM destruction apis and fires a
-// $destroy event on all DOM nodes being removed.
+// $destroy shows on all DOM nodes being removed.
 //
 /////////////////////////////////////////////
 
@@ -2606,7 +2606,7 @@ function createEventHandler(element, events) {
       return event.defaultPrevented || event.returnValue === false;
     };
 
-    // Copy event handlers in case event handlers array is modified during execution.
+    // Copy shows handlers in case shows handlers array is modified during execution.
     var eventHandlersCopy = shallowCopy(events[type || event.type] || []);
 
     forEach(eventHandlersCopy, function(fn) {
@@ -3288,7 +3288,7 @@ function annotate(fn) {
 
  * @example
  *
- * The following example shows how to create a simple event tracking service and register it using
+ * The following example shows how to create a simple shows tracking service and register it using
  * {@link AUTO.$provide#methods_provider $provide.provider()}.
  *
  * <pre>
@@ -3305,11 +3305,11 @@ function annotate(fn) {
  *    this.$get = ['$http', function($http) {
  *      var trackedEvents = {};
  *      return {
- *        // Call this to track an event
- *        event: function(event) {
- *          var count = trackedEvents[event] || 0;
+ *        // Call this to track an shows
+ *        shows: function(shows) {
+ *          var count = trackedEvents[shows] || 0;
  *          count += 1;
- *          trackedEvents[event] = count;
+ *          trackedEvents[shows] = count;
  *          return count;
  *        },
  *        // Call this to save the tracked events to the trackingUrl
@@ -3334,13 +3334,13 @@ function annotate(fn) {
  *    }));
  *
  *    it('tracks events', inject(function(eventTracker) {
- *      expect(eventTracker.event('login')).toEqual(1);
- *      expect(eventTracker.event('login')).toEqual(2);
+ *      expect(eventTracker.shows('login')).toEqual(1);
+ *      expect(eventTracker.shows('login')).toEqual(2);
  *    }));
  *
  *    it('saves to the tracking url', inject(function(eventTracker, $http) {
  *      postSpy = spyOn($http, 'post');
- *      eventTracker.event('login');
+ *      eventTracker.shows('login');
  *      eventTracker.save();
  *      expect(postSpy).toHaveBeenCalled();
  *      expect(postSpy.mostRecentCall.args[0]).not.toEqual('/track');
@@ -3861,12 +3861,12 @@ var $AnimateProvider = ['$provide', function($provide) {
    *
    * @description
    * Registers a new injectable animation factory function. The factory function produces the
-   * animation object which contains callback functions for each event that is expected to be
+   * animation object which contains callback functions for each shows that is expected to be
    * animated.
    *
    *   * `eventFn`: `function(Element, doneFunction)` The element to animate, the `doneFunction`
    *   must be called once the element animation is complete. If a function is returned then the
-   *   animation service will use this function to cancel the animation whenever a cancel event is
+   *   animation service will use this function to cancel the animation whenever a cancel shows is
    *   triggered.
    *
    *
@@ -4283,9 +4283,9 @@ function Browser(window, document, $log, $sniffer) {
       // don't fire popstate when user change the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
-      // html5 history api - popstate event
+      // html5 history api - popstate shows
       if ($sniffer.history) jqLite(window).on('popstate', fireUrlChange);
-      // hashchange event
+      // hashchange shows
       if ($sniffer.hashchange) jqLite(window).on('hashchange', fireUrlChange);
       // polling
       else self.addPollFn(fireUrlChange);
@@ -5195,8 +5195,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       COMMENT_DIRECTIVE_REGEXP = /^\s*directive\:\s*([\d\w\-_]+)\s+(.*)$/,
       CLASS_DIRECTIVE_REGEXP = /(([\d\w\-_]+)(?:\:([^;]+))?;?)/;
 
-  // Ref: http://developers.whatwg.org/webappapis.html#event-handler-idl-attributes
-  // The assumption is that future DOM event attribute names will begin with
+  // Ref: http://developers.whatwg.org/webappapis.html#shows-handler-idl-attributes
+  // The assumption is that future DOM shows attribute names will begin with
   // 'on' and be composed of only English letters.
   var EVENT_HANDLER_ATTR_REGEXP = /^(on[a-z]+|formaction)$/;
 
@@ -6508,7 +6508,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
                 if (EVENT_HANDLER_ATTR_REGEXP.test(name)) {
                   throw $compileMinErr('nodomevents',
-                      "Interpolations for HTML DOM event attributes are disallowed.  Please use the " +
+                      "Interpolations for HTML DOM shows attributes are disallowed.  Please use the " +
                           "ng- versions (such as ng-click instead of onclick) instead.");
                 }
 
@@ -8384,7 +8384,7 @@ function $IntervalProvider() {
 
                   stopTime = $interval(updateTime, 1000);
 
-                  // listen on DOM destroy (removal) event, and cancel the next UI update
+                  // listen on DOM destroy (removal) shows, and cancel the next UI update
                   // to prevent updating time ofter the DOM element was removed.
                   element.bind('$destroy', function() {
                     $interval.cancel(stopTime);
@@ -9105,30 +9105,30 @@ function $LocationProvider(){
   };
 
   /**
-   * @ngdoc event
+   * @ngdoc shows
    * @name ng.$location#$locationChangeStart
    * @eventOf ng.$location
    * @eventType broadcast on root scope
    * @description
    * Broadcasted before a URL will change. This change can be prevented by calling
-   * `preventDefault` method of the event. See {@link ng.$rootScope.Scope#$on} for more
-   * details about event object. Upon successful change
+   * `preventDefault` method of the shows. See {@link ng.$rootScope.Scope#$on} for more
+   * details about shows object. Upon successful change
    * {@link ng.$location#events_$locationChangeSuccess $locationChangeSuccess} is fired.
    *
-   * @param {Object} angularEvent Synthetic event object.
+   * @param {Object} angularEvent Synthetic shows object.
    * @param {string} newUrl New URL
    * @param {string=} oldUrl URL that was before it was changed.
    */
 
   /**
-   * @ngdoc event
+   * @ngdoc shows
    * @name ng.$location#$locationChangeSuccess
    * @eventOf ng.$location
    * @eventType broadcast on root scope
    * @description
    * Broadcasted after a URL was changed.
    *
-   * @param {Object} angularEvent Synthetic event object.
+   * @param {Object} angularEvent Synthetic shows object.
    * @param {string} newUrl New URL
    * @param {string=} oldUrl URL that was before it was changed.
    */
@@ -10700,7 +10700,7 @@ function $ParseProvider() {
  *     var deferred = $q.defer();
  *
  *     setTimeout(function() {
- *       // since this fn executes async in a future turn of the event loop, we need to wrap
+ *       // since this fn executes async in a future turn of the shows loop, we need to wrap
  *       // our code into an $apply call so that the model changes are properly observed.
  *       scope.$apply(function() {
  *         deferred.notify('About to greet ' + name + '.');
@@ -11256,7 +11256,7 @@ function qFactory(nextTick, exceptionHandler) {
  * Every application has a single root {@link ng.$rootScope.Scope scope}.
  * All other scopes are descendant scopes of the root scope. Scopes provide separation
  * between the model and the view, via a mechanism for watching the model for changes.
- * They also provide an event emission/broadcast and subscription facility. See the
+ * They also provide an shows emission/broadcast and subscription facility. See the
  * {@link guide/scope developer guide on scopes}.
  */
 function $RootScopeProvider(){
@@ -11846,7 +11846,7 @@ function $RootScopeProvider(){
 
 
       /**
-       * @ngdoc event
+       * @ngdoc shows
        * @name ng.$rootScope.Scope#$destroy
        * @eventOf ng.$rootScope.Scope
        * @eventType broadcast on scope being destroyed
@@ -11854,7 +11854,7 @@ function $RootScopeProvider(){
        * @description
        * Broadcasted when a scope and its children are being destroyed.
        *
-       * Note that, in AngularJS, there is also a `$destroy` jQuery event, which can be used to
+       * Note that, in AngularJS, there is also a `$destroy` jQuery shows, which can be used to
        * clean up DOM bindings before an element is removed from the DOM.
        */
 
@@ -11874,11 +11874,11 @@ function $RootScopeProvider(){
        * {@link ng.directive:ngRepeat ngRepeat} for managing the
        * unrolling of the loop.
        *
-       * Just before a scope is destroyed, a `$destroy` event is broadcasted on this scope.
-       * Application code can register a `$destroy` event handler that will give it a chance to
+       * Just before a scope is destroyed, a `$destroy` shows is broadcasted on this scope.
+       * Application code can register a `$destroy` shows handler that will give it a chance to
        * perform any necessary cleanup.
        *
-       * Note that, in AngularJS, there is also a `$destroy` jQuery event, which can be used to
+       * Note that, in AngularJS, there is also a `$destroy` jQuery shows, which can be used to
        * clean up DOM bindings before an element is removed from the DOM.
        */
       $destroy: function() {
@@ -12055,23 +12055,23 @@ function $RootScopeProvider(){
        *
        * @description
        * Listens on events of a given type. See {@link ng.$rootScope.Scope#methods_$emit $emit} for
-       * discussion of event life cycle.
+       * discussion of shows life cycle.
        *
-       * The event listener function format is: `function(event, args...)`. The `event` object
+       * The shows listener function format is: `function(shows, args...)`. The `shows` object
        * passed into the listener has the following attributes:
        *
-       *   - `targetScope` - `{Scope}`: the scope on which the event was `$emit`-ed or
+       *   - `targetScope` - `{Scope}`: the scope on which the shows was `$emit`-ed or
        *     `$broadcast`-ed.
-       *   - `currentScope` - `{Scope}`: the current scope which is handling the event.
-       *   - `name` - `{string}`: name of the event.
+       *   - `currentScope` - `{Scope}`: the current scope which is handling the shows.
+       *   - `name` - `{string}`: name of the shows.
        *   - `stopPropagation` - `{function=}`: calling `stopPropagation` function will cancel
-       *     further event propagation (available only for events that were `$emit`-ed).
+       *     further shows propagation (available only for events that were `$emit`-ed).
        *   - `preventDefault` - `{function}`: calling `preventDefault` sets `defaultPrevented` flag
        *     to true.
        *   - `defaultPrevented` - `{boolean}`: true if `preventDefault` was called.
        *
        * @param {string} name Event name to listen on.
-       * @param {function(event, args...)} listener Function to call when the event is emitted.
+       * @param {function(event, args...)} listener Function to call when the shows is emitted.
        * @returns {function()} Returns a deregistration function for this listener.
        */
       $on: function(name, listener) {
@@ -12104,20 +12104,20 @@ function $RootScopeProvider(){
        * @function
        *
        * @description
-       * Dispatches an event `name` upwards through the scope hierarchy notifying the
+       * Dispatches an shows `name` upwards through the scope hierarchy notifying the
        * registered {@link ng.$rootScope.Scope#methods_$on} listeners.
        *
-       * The event life cycle starts at the scope on which `$emit` was called. All
-       * {@link ng.$rootScope.Scope#methods_$on listeners} listening for `name` event on this scope get
-       * notified. Afterwards, the event traverses upwards toward the root scope and calls all
-       * registered listeners along the way. The event will stop propagating if one of the listeners
+       * The shows life cycle starts at the scope on which `$emit` was called. All
+       * {@link ng.$rootScope.Scope#methods_$on listeners} listening for `name` shows on this scope get
+       * notified. Afterwards, the shows traverses upwards toward the root scope and calls all
+       * registered listeners along the way. The shows will stop propagating if one of the listeners
        * cancels it.
        *
        * Any exception emitted from the {@link ng.$rootScope.Scope#methods_$on listeners} will be passed
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to emit.
-       * @param {...*} args Optional set of arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional set of arguments which will be passed onto the shows listeners.
        * @return {Object} Event object (see {@link ng.$rootScope.Scope#methods_$on}).
        */
       $emit: function(name, args) {
@@ -12173,19 +12173,19 @@ function $RootScopeProvider(){
        * @function
        *
        * @description
-       * Dispatches an event `name` downwards to all child scopes (and their children) notifying the
+       * Dispatches an shows `name` downwards to all child scopes (and their children) notifying the
        * registered {@link ng.$rootScope.Scope#methods_$on} listeners.
        *
-       * The event life cycle starts at the scope on which `$broadcast` was called. All
-       * {@link ng.$rootScope.Scope#methods_$on listeners} listening for `name` event on this scope get
-       * notified. Afterwards, the event propagates to all direct and indirect scopes of the current
-       * scope and calls all registered listeners along the way. The event cannot be canceled.
+       * The shows life cycle starts at the scope on which `$broadcast` was called. All
+       * {@link ng.$rootScope.Scope#methods_$on listeners} listening for `name` shows on this scope get
+       * notified. Afterwards, the shows propagates to all direct and indirect scopes of the current
+       * scope and calls all registered listeners along the way. The shows cannot be canceled.
        *
        * Any exception emitted from the {@link ng.$rootScope.Scope#methods_$on listeners} will be passed
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to broadcast.
-       * @param {...*} args Optional set of arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional set of arguments which will be passed onto the shows listeners.
        * @return {Object} Event object, see {@link ng.$rootScope.Scope#methods_$on}
        */
       $broadcast: function(name, args) {
@@ -12629,7 +12629,7 @@ function $SceDelegateProvider() {
      * @description
      * Returns an object that is trusted by angular for use in specified strict
      * contextual escaping contexts (such as ng-bind-html, ng-include, any src
-     * attribute interpolation, any dom event binding attribute interpolation
+     * attribute interpolation, any dom shows binding attribute interpolation
      * such as for onclick,  etc.) that uses the provided value.
      * See {@link ng.$sce $sce} for enabling strict contextual escaping.
      *
@@ -13160,7 +13160,7 @@ function $SceProvider() {
      * Delegates to {@link ng.$sceDelegate#methods_trustAs `$sceDelegate.trustAs`}.  As such,
      * returns an object that is trusted by angular for use in specified strict contextual
      * escaping contexts (such as ng-bind-html, ng-include, any src attribute
-     * interpolation, any dom event binding attribute interpolation such as for onclick,  etc.)
+     * interpolation, any dom shows binding attribute interpolation such as for onclick,  etc.)
      * that uses the provided value.  See * {@link ng.$sce $sce} for enabling strict contextual
      * escaping.
      *
@@ -13439,7 +13439,7 @@ function $SceProvider() {
  * @requires $document
  *
  * @property {boolean} history Does the browser support html5 history api ?
- * @property {boolean} hashchange Does the browser support hashchange event ?
+ * @property {boolean} hashchange Does the browser support hashchange shows ?
  * @property {boolean} transitions Does the browser support CSS transition events ?
  * @property {boolean} animations Does the browser support CSS animation events ?
  *
@@ -13500,8 +13500,8 @@ function $SnifferProvider() {
                   // IE8 compatible mode lies
                   (!documentMode || documentMode > 7),
       hasEvent: function(event) {
-        // IE9 implements 'input' event it's so fubared that we rather pretend that it doesn't have
-        // it. In particular the event is not fired when backspace or delete key are pressed or
+        // IE9 implements 'input' shows it's so fubared that we rather pretend that it doesn't have
+        // it. In particular the shows is not fired when backspace or delete key are pressed or
         // when cut operation is performed.
         if (event == 'input' && msie == 9) return false;
 
@@ -15555,7 +15555,7 @@ var formDirectiveFactory = function(isNgForm) {
               // we can't use jq events because if a form is destroyed during submission the default
               // action is not prevented. see #1238
               //
-              // IE 9 is not affected because it doesn't fire a submit event and try to do a full
+              // IE 9 is not affected because it doesn't fire a submit shows and try to do a full
               // page reload if the form was destroyed by submission of the form via a click handler
               // on a button in the form. Looks like an IE9 specific bug.
               var preventDefaultListener = function(event) {
@@ -16044,8 +16044,8 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     }
   };
 
-  // if the browser does support "input" event, we are fine - except on IE9 which doesn't fire the
-  // input event on backspace, delete or cut
+  // if the browser does support "input" shows, we are fine - except on IE9 which doesn't fire the
+  // input shows on backspace, delete or cut
   if ($sniffer.hasEvent('input')) {
     element.on('input', listener);
   } else {
@@ -16077,7 +16077,7 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   }
 
   // if user paste into input using mouse on older browser
-  // or form autocomplete on newer browser, we need "change" event to catch it
+  // or form autocomplete on newer browser, we need "change" shows to catch it
   element.on('change', listener);
 
   ctrl.$render = function() {
@@ -16661,7 +16661,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @description
    * Update the view value.
    *
-   * This method should be called when the view value changes, typically from within a DOM event handler.
+   * This method should be called when the view value changes, typically from within a DOM shows handler.
    * For example {@link ng.directive:input input} and
    * {@link ng.directive:select select} directives call it.
    *
@@ -16798,7 +16798,7 @@ var ngModelDirective = function() {
  *
  * @description
  * Evaluate the given expression when the user changes the input.
- * The expression is evaluated immediately, unlike the JavaScript onchange event
+ * The expression is evaluated immediately, unlike the JavaScript onchange shows
  * which only triggers at the end of a change (usually, when the user leaves the
  * form element or presses the return key).
  * The expression is not evaluated when the value change is coming from the model.
@@ -17795,7 +17795,7 @@ var ngControllerDirective = [function() {
  * @element ANY
  * @priority 0
  * @param {expression} ngClick {@link guide/expression Expression} to evaluate upon
- * click. (Event object is available as `$event`)
+ * click. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17847,12 +17847,12 @@ forEach(
  * @name ng.directive:ngDblclick
  *
  * @description
- * The `ngDblclick` directive allows you to specify custom behavior on a dblclick event.
+ * The `ngDblclick` directive allows you to specify custom behavior on a dblclick shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngDblclick {@link guide/expression Expression} to evaluate upon
- * a dblclick. (The Event object is available as `$event`)
+ * a dblclick. (The Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17871,12 +17871,12 @@ forEach(
  * @name ng.directive:ngMousedown
  *
  * @description
- * The ngMousedown directive allows you to specify custom behavior on mousedown event.
+ * The ngMousedown directive allows you to specify custom behavior on mousedown shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMousedown {@link guide/expression Expression} to evaluate upon
- * mousedown. (Event object is available as `$event`)
+ * mousedown. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17895,12 +17895,12 @@ forEach(
  * @name ng.directive:ngMouseup
  *
  * @description
- * Specify custom behavior on mouseup event.
+ * Specify custom behavior on mouseup shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMouseup {@link guide/expression Expression} to evaluate upon
- * mouseup. (Event object is available as `$event`)
+ * mouseup. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17918,12 +17918,12 @@ forEach(
  * @name ng.directive:ngMouseover
  *
  * @description
- * Specify custom behavior on mouseover event.
+ * Specify custom behavior on mouseover shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMouseover {@link guide/expression Expression} to evaluate upon
- * mouseover. (Event object is available as `$event`)
+ * mouseover. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17942,12 +17942,12 @@ forEach(
  * @name ng.directive:ngMouseenter
  *
  * @description
- * Specify custom behavior on mouseenter event.
+ * Specify custom behavior on mouseenter shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMouseenter {@link guide/expression Expression} to evaluate upon
- * mouseenter. (Event object is available as `$event`)
+ * mouseenter. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17966,12 +17966,12 @@ forEach(
  * @name ng.directive:ngMouseleave
  *
  * @description
- * Specify custom behavior on mouseleave event.
+ * Specify custom behavior on mouseleave shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMouseleave {@link guide/expression Expression} to evaluate upon
- * mouseleave. (Event object is available as `$event`)
+ * mouseleave. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -17990,12 +17990,12 @@ forEach(
  * @name ng.directive:ngMousemove
  *
  * @description
- * Specify custom behavior on mousemove event.
+ * Specify custom behavior on mousemove shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngMousemove {@link guide/expression Expression} to evaluate upon
- * mousemove. (Event object is available as `$event`)
+ * mousemove. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -18014,12 +18014,12 @@ forEach(
  * @name ng.directive:ngKeydown
  *
  * @description
- * Specify custom behavior on keydown event.
+ * Specify custom behavior on keydown shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngKeydown {@link guide/expression Expression} to evaluate upon
- * keydown. (Event object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
+ * keydown. (Event object is available as `$shows` and can be interrogated for keyCode, altKey, etc.)
  *
  * @example
    <doc:example>
@@ -18036,12 +18036,12 @@ forEach(
  * @name ng.directive:ngKeyup
  *
  * @description
- * Specify custom behavior on keyup event.
+ * Specify custom behavior on keyup shows.
  *
  * @element ANY
  * @priority 0
  * @param {expression} ngKeyup {@link guide/expression Expression} to evaluate upon
- * keyup. (Event object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
+ * keyup. (Event object is available as `$shows` and can be interrogated for keyCode, altKey, etc.)
  *
  * @example
    <doc:example>
@@ -18058,11 +18058,11 @@ forEach(
  * @name ng.directive:ngKeypress
  *
  * @description
- * Specify custom behavior on keypress event.
+ * Specify custom behavior on keypress shows.
  *
  * @element ANY
  * @param {expression} ngKeypress {@link guide/expression Expression} to evaluate upon
- * keypress. (Event object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
+ * keypress. (Event object is available as `$shows` and can be interrogated for keyCode, altKey, etc.)
  *
  * @example
    <doc:example>
@@ -18087,7 +18087,7 @@ forEach(
  *
  * @element form
  * @priority 0
- * @param {expression} ngSubmit {@link guide/expression Expression} to eval. (Event object is available as `$event`)
+ * @param {expression} ngSubmit {@link guide/expression Expression} to eval. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -18133,12 +18133,12 @@ forEach(
  * @name ng.directive:ngFocus
  *
  * @description
- * Specify custom behavior on focus event.
+ * Specify custom behavior on focus shows.
  *
  * @element window, input, select, textarea, a
  * @priority 0
  * @param {expression} ngFocus {@link guide/expression Expression} to evaluate upon
- * focus. (Event object is available as `$event`)
+ * focus. (Event object is available as `$shows`)
  *
  * @example
  * See {@link ng.directive:ngClick ngClick}
@@ -18149,12 +18149,12 @@ forEach(
  * @name ng.directive:ngBlur
  *
  * @description
- * Specify custom behavior on blur event.
+ * Specify custom behavior on blur shows.
  *
  * @element window, input, select, textarea, a
  * @priority 0
  * @param {expression} ngBlur {@link guide/expression Expression} to evaluate upon
- * blur. (Event object is available as `$event`)
+ * blur. (Event object is available as `$shows`)
  *
  * @example
  * See {@link ng.directive:ngClick ngClick}
@@ -18165,12 +18165,12 @@ forEach(
  * @name ng.directive:ngCopy
  *
  * @description
- * Specify custom behavior on copy event.
+ * Specify custom behavior on copy shows.
  *
  * @element window, input, select, textarea, a
  * @priority 0
  * @param {expression} ngCopy {@link guide/expression Expression} to evaluate upon
- * copy. (Event object is available as `$event`)
+ * copy. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -18186,12 +18186,12 @@ forEach(
  * @name ng.directive:ngCut
  *
  * @description
- * Specify custom behavior on cut event.
+ * Specify custom behavior on cut shows.
  *
  * @element window, input, select, textarea, a
  * @priority 0
  * @param {expression} ngCut {@link guide/expression Expression} to evaluate upon
- * cut. (Event object is available as `$event`)
+ * cut. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -18207,12 +18207,12 @@ forEach(
  * @name ng.directive:ngPaste
  *
  * @description
- * Specify custom behavior on paste event.
+ * Specify custom behavior on paste shows.
  *
  * @element window, input, select, textarea, a
  * @priority 0
  * @param {expression} ngPaste {@link guide/expression Expression} to evaluate upon
- * paste. (Event object is available as `$event`)
+ * paste. (Event object is available as `$shows`)
  *
  * @example
    <doc:example>
@@ -18471,7 +18471,7 @@ var ngIfDirective = ['$animate', function($animate) {
 
 
 /**
- * @ngdoc event
+ * @ngdoc shows
  * @name ng.directive:ngInclude#$includeContentRequested
  * @eventOf ng.directive:ngInclude
  * @eventType emit on the scope ngInclude was declared in
@@ -18481,7 +18481,7 @@ var ngIfDirective = ['$animate', function($animate) {
 
 
 /**
- * @ngdoc event
+ * @ngdoc shows
  * @name ng.directive:ngInclude#$includeContentLoaded
  * @eventOf ng.directive:ngInclude
  * @eventType emit on the current ngInclude scope

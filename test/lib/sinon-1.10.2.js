@@ -3465,7 +3465,7 @@ if (typeof sinon == "undefined") {
 
 /**
  * @depend ../../sinon.js
- * @depend event.js
+ * @depend shows.js
  */
 /*jslint eqeqeq: false, onevar: false*/
 /*global sinon, module, require, ActiveXObject, XMLHttpRequest, DOMParser*/
@@ -4862,7 +4862,7 @@ if (typeof module !== "undefined" && module.exports && typeof require == "functi
 
 /**
  * @depend ../../sinon.js
- * @depend event.js
+ * @depend shows.js
  */
 /*jslint eqeqeq: false, onevar: false*/
 /*global sinon, module, require, XDomainRequest*/
@@ -4944,7 +4944,7 @@ sinon.xdr = { XDomainRequest: this.XDomainRequest };
                 break;
             case FakeXDomainRequest.LOADING:
                 if (this.sendFlag){
-                    //raise the progress event
+                    //raise the progress shows
                     eventName = 'onprogress';
                 }
                 break;
@@ -4961,7 +4961,7 @@ sinon.xdr = { XDomainRequest: this.XDomainRequest };
                 break;
             }
 
-            // raising event (if defined)
+            // raising shows (if defined)
             if (eventName) {
                 if (typeof this[eventName] == "function") {
                     try {
